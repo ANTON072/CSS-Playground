@@ -1,0 +1,11 @@
+@layer token, reset, base, feature;
+
+@import url("../../common/css/tokens.css") layer(token);
+@import url("../../common/css/reset.css") layer(reset);
+@import url("../../common/css/base.css") layer(base);
+
+@layer feature {
+  h1 {
+    color: red;
+  }
+}

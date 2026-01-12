@@ -1,0 +1,68 @@
+@layer base, feature;
+
+@import url("https://cdn.jsdelivr.net/npm/kiso.css@latest/kiso.css") layer(base);
+
+@layer feature {
+  .Grid {
+    /* font-sizeを14px相当に設定する */
+    font-size: calc(14 / 16 * 1rem);
+
+    /* ブラウザが単位付き除算をサポートしている */
+    @supports (font-size: calc(1px / 1rem * 1rem)) {
+      font-size: calc(14px / 1rem * 1rem);
+    }
+  }
+
+  ._layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+    gap: 1.5rem;
+
+    & > * {
+      grid-row: span 4;
+    }
+  }
+
+  ._item {
+    --_gutter: 1.5rem;
+    --_image-contrast: 75%;
+
+    position: relative;
+    display: grid;
+    grid-template-columns:
+      [--full-start] var(--_gutter) [--content-start] 1fr [--content-end] var(
+        --_gutter
+      )
+      [--full-end];
+    grid-template-rows: subgrid;
+    /* 1lhはline-heightの高さ分 */
+    gap: 1lh 0;
+    padding-bottom: var(--_gutter);
+    border-radius: 4px;
+    box-shadow: 0 20px 40px -14px oklch(from black l c h / 25%);
+
+    & > * {
+      /* grid-column: --content-start / --content-end; これと同じ */
+      grid-column: --content;
+    }
+
+    & > ._imageLayout {
+      grid-column: --full;
+    }
+  }
+
+  ._imageLayout {
+    container-type: inline-size;
+    contain: content;
+    border-start-start-radius: inherit;
+    border-start-end-radius: inherit;
+  }
+
+  ._image {
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    filter: contrast(var(--_image-contrast));
+    transition-duration: 300ms;
+    transition-property: filter;
+  }
+}

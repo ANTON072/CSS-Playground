@@ -1,0 +1,11 @@
+{
+  "name": "css-playground",
+  "private": true,
+  "scripts": {
+    "dev": "live-server"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "prettier": "^3.4.2"
+  }
+}
