@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Study 2 - Modal</title>
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <button class="button" type="button">Open Modal</button>
+
+    <dialog class="modal">
+      <div class="container">
+        <h2 class="headline">Sample Modal</h2>
+        <p class="description">
+          This is a sample modal dialog.Lorem ipsum dolor sit amet, consectetur
+          adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+        </p>
+      </div>
+      <button class="close" type="button">
+        <span style="display: none">モーダルを閉じる</span>
+      </button>
+    </dialog>
+
+    <script>
+      const button = document.querySelector(".button");
+      const modal = document.querySelector(".modal");
+      const closeButton = document.querySelector(".close");
+
+      button.addEventListener("click", () => {
+        modal.showModal();
+        modal.setAttribute("data-active", "true");
+      });
+
+      closeButton.addEventListener("click", () => {
+        modal.setAttribute("data-active", "false");
+        modal.close();
+      });
+    </script>
+  </body>
+</html>
